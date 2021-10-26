@@ -1,0 +1,110 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - tell_gamebox
+  - tell_subscription
+  - out_of_scope
+  - chitchat
+  - my_account:
+      user_entities:
+        - account
+  - my_plan:
+      user_entities:
+        - plan
+  - ask_game
+
+entities:
+  - account
+  - plan
+  - game
+
+slots:
+  account:
+    type: text
+  plan:
+    type: text
+  game:
+    type: text
+
+responses:
+  utter_chitchat/ask_help:
+  - text: You can try to restart your game.
+  - text: You can try to restart your GameBox.
+  - text: You can contact our human service by +86 1345667890.
+
+  utter_chitchat/ask_location:
+  - text: NJIT.
+  - text: We are located in Nanjing.
+  - text: I'm in Nanjing xxx.
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_gamebox:
+  - text: "GameBox performance level: 2"
+
+  utter_subcription:
+  - text: "Sure, monthly plan costs $5, seasonly will have 5% off, lifetime plan will have some freebies
+  which you can check out one game platform."
+
+  utter_ask_account:
+  - text: "What is your account?"
+
+  utter_ask_plan:
+  - text: "Which plan do you prefer?"
+
+  utter_thanks:
+   - text: "Thanks for your providing the information"
+
+  utter_details_thanks:
+   - text: "Thanks for your providing the information\nAccount: {Account},\nPlan: {Plan}"
+
+  utter_details_game:
+    - text: "Game: {Game}: Price: {Price}"
+
+  utter_out_of_scope:
+   - text: Sorry, I didn't get what you said. Please rephrase what you said.
+
+actions:
+  - action_submit
+  - action_name
+
+forms:
+  user_details_form:
+    account:
+      - type: from_entity
+        entity: account
+    plan:
+      - type: from_entity
+        entity: plan
+
+#  game_form:
+#    game:
+#      - type: from_entity
+#        entity: game
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
