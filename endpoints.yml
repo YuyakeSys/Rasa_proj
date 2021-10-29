@@ -40,3 +40,19 @@ action_endpoint:
 #  username: username
 #  password: password
 #  queue: queue
+tracker_store:
+  type: sql  # other databases are supported
+  dialect: <if using SQL, your Rasa Open Source deployment's SQL dialect, e.g. "postgresql">
+  url: <URL of the database service in your Rasa Open Source deployment>
+  username: <tracker database username in your Rasa Open Source deployment>
+  password: <tracker database password in your Rasa Open Source deployment>
+  db: <name of the tracker database in your Rasa Open Source deployment>
+
+event_broker:
+  type: "pika"
+  url: <URL of the exposed RabbitMQ service in your Rasa X deployment>
+  port: 5672  # change if your RabbitMQ service is exposed on a different port
+  username: "user"  # if customized, value of the RABBITMQ_USERNAME environment variable
+  password: <value of RABBITMQ_PASSWORD>
+  queues:
+    - "rasa_production_events"  # if using a custom queue, value of the RABBITMQ_QUEUE environment variable
